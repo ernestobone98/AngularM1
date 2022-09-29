@@ -1,0 +1,18 @@
+<p>assignments works!</p>
+<p>Titre = {{titre}}</p>
+
+<!-- <div *ngFor="let assignment of assignments"
+    [ngClass]="{'rendu': assignment.rendu , 'nonRendu' : !assignment.rendu}">
+        {{assignment.nom}} - {{assignment.dateDeRendu}}
+</div> -->
+
+<div *ngFor="let assignment of assignments">
+    <p appRendu *ngIf="assignment.rendu; else nonsoumis">
+        {{assignment.nom}} - {{assignment.dateDeRendu}}
+    </p>
+    <ng-template #nonsoumis>
+        <p appNonRendu>
+            Pas rendu : {{assignment.nom}} - {{assignment.dateDeRendu}}
+        </p>
+    </ng-template>
+</div>
