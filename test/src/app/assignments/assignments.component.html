@@ -6,6 +6,10 @@
         {{assignment.nom}} - {{assignment.dateDeRendu}}
 </div> -->
 
+<form ngForm #assignmentForm>
+    <button mat-stroked-button color="primary">Ajouter</button>
+</form>
+
 <div *ngFor="let assignment of assignments">
     <p appRendu *ngIf="assignment.rendu; else nonsoumis">
         {{assignment.nom}} - {{assignment.dateDeRendu}}
