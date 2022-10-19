@@ -13,19 +13,24 @@
         </p>
     </ng-template>
 </div> -->
-<main class="container" *ngIf="!formVisible">
-    <button class="ajouterBtn" mat-flat-button color="accent" (click)="onAddAsignmentBtnClick()">Ajouter un Devoir</button>
+<!-- <main class="container" *ngIf="!formVisible">   plus besoin --> 
+<main class="container">
+    <div class="ajouterBtn"><a routerLink="/add">
+        <button class="ajouterBtn" mat-flat-button color="accent" (click)="onAddAsignmentBtnClick()">Ajouter un Devoir</button>
+    </a></div>
     <mat-list *ngFor="let assignment of assignments">
-        <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
-        <mat-list-item (click)="assignmentClique(assignment)">
-            <p appRendu *ngIf="assignment.rendu; else nonsoumis"> Devoir intitulé {{assignment.nom}} a été rendu.</p>
-            <ng-template #nonsoumis>
-                <p appNonRendu > Devoir intitulé {{assignment.nom}} n'a pas été rendu.</p>
-            </ng-template>
-            <mat-divider></mat-divider>
-        </mat-list-item>
+        <nav><a routerLink="/assignment/{{assignment.id}}">
+            <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+            <mat-list-item (click)="assignmentClique(assignment)">
+                <p appRendu *ngIf="assignment.rendu; else nonsoumis"> Devoir intitulé {{assignment.nom}} a été rendu.</p>
+                <ng-template #nonsoumis>
+                    <p appNonRendu > Devoir intitulé {{assignment.nom}} n'a pas été rendu.</p>
+                </ng-template>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </a></nav>
     </mat-list>
-    <app-assignment-detail [assignmentTransmis]="assignmentSelectionne">
-    </app-assignment-detail>
+    <!-- <app-assignment-detail [assignmentTransmis]="assignmentSelectionne" (deleteAssignment)="onDeleteAssignment($event)">
+    </app-assignment-detail> -->
 </main>
-<app-add-assignment (nouvelAssignment)="onNouvelAssignment($event)" *ngIf="formVisible"></app-add-assignment>
+<!-- <app-add-assignment (nouvelAssignment)="onNouvelAssignment($event)" *ngIf="formVisible"></app-add-assignment> -->

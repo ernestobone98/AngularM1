@@ -19,6 +19,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {path: '', component: AssignmentsComponent},
+  {path : 'home', component: AssignmentsComponent},
+  {path : 'add', component: AddAssignmentComponent},
+  {path : 'assignment/:id', component: AssignmentDetailComponent}
+];
 
 @NgModule({
   declarations: [
@@ -32,7 +40,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
     BrowserModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatInputModule, MatFormFieldModule, FormsModule, MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule
+    MatListModule, MatCardModule, MatCheckboxModule, RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
