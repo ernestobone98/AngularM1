@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
@@ -8,31 +9,15 @@ import { LoggingService } from './logging.service';
 })
 export class AssignmentsService {
 
-  assignments: Assignment[]= [
-    {
-      id: 1,
-      nom: "Assignment 1",
-      dateDeRendu: new Date ("2020-10-10"),
-      rendu: true
-    },
-    {
-      id: 2,
-      nom: "Assignment 2",
-      dateDeRendu: new Date ("2020-10-10"),
-      rendu: false
-    },
-    {
-      id: 3,
-      nom: "Assignment 3",
-      dateDeRendu: new Date ("2020-10-10"),
-      rendu: false
-    }
-  ];
+  assignments: Assignment[]= [];
 
-  constructor(private loggingService:LoggingService) { }
+  uri = 'http://localhost/8010/api/assignments';
 
-  getAssignments(id) : Observable<Assignment> {
-    return of(this.assignments.find(a => a.id === id));
+  constructor(private loggingService:LoggingService, private http:HttpClient) { }
+
+  getAssignments() : Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(this.uri);
+    // return of(this.assignments.find(a => a.id === id));
   }
 
   addAssignment(assignment: Assignment) : Observable<string> {
