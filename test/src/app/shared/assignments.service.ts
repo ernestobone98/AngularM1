@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,21 @@ export class AssignmentsService {
     }
   ];
 
-  constructor(private loggingService:LoggingService) { }
+  url = "http://localhost:8010/api/assignments";
+  //constructor(private loggingService:LoggingService) { }
+  constructor (private loggingService:LoggingService, private http:HttpClient) { }
 
-  getAssignments(id) : Observable<Assignment> {
-    return of(this.assignments.find(a => a.id === id));
+  getAssignments() : Observable<Assignment[]> {
+    return of(this.assignments);
+  }
+
+  // getAssignments() : Observable<Assignment[]> {
+  //   return this.http.get<Assignment[]>(this.url);
+  // }
+
+  getAssignment(id:number) : Observable<Assignment|undefined> {
+    const a:Assignment|undefined = this.assignments.find(a => a.id === id);
+    return of(a);
   }
 
   addAssignment(assignment: Assignment) : Observable<string> {
@@ -43,7 +55,8 @@ export class AssignmentsService {
   }
 
   updateAssignment(assignment:Assignment) : Observable<string> {
-    // Object gets updated. An assignment is passed by reference.
+    const index = this.assignments.findIndex(a => a.id === assignment.id);
+    this.assignments[index] = assignment;
     return of("Assignment modifié");
   }
 

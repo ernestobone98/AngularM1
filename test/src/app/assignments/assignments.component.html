@@ -16,7 +16,7 @@
 <!-- <main class="container" *ngIf="!formVisible">   plus besoin --> 
 <main class="container">
     <div class="ajouterBtn"><a routerLink="/add">
-        <button class="ajouterBtn" mat-flat-button color="accent" (click)="onAddAsignmentBtnClick()">Ajouter un Devoir</button>
+        <button class="ajouterBtn" mat-flat-button color="accent" >Ajouter un Devoir</button>
     </a></div>
     <mat-list *ngFor="let assignment of assignments">
         <nav><a routerLink="/assignment/{{assignment.id}}">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
-import { Observable, of } from 'rxjs';
+// import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-assignments',
@@ -31,9 +31,9 @@ export class AssignmentsComponent implements OnInit {
     this.assignmentSelectionne = assignment;
   }
 
-  onAddAsignmentBtnClick() {
-    this.formVisible = true;
-  }
+  // onAddAsignmentBtnClick() {
+  //   this.formVisible = true;
+  // }
 
   // onNouvelAssignment(event:Assignment) {
   //   //this.assignments.push(event);

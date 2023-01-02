@@ -1,5 +1,8 @@
-<h1>
-    <nav><a routerLink="/home">{{title}}</a></nav>
-</h1>
+<div>
+    <h1>
+        <nav><a routerLink="/home">{{title}}</a></nav>
+    </h1>
+    <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
+</div>
 <!-- <app-assignments></app-assignments> -->
 <router-outlet></router-outlet>
