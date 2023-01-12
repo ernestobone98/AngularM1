@@ -1,4 +1,4 @@
-<form class="form" ngForm (submit)="onSubmit(); assignmentForm.reset()" #assignmentForm>
+<form class="form" ngForm (submit)="onSubmit()" #assignmentForm>
     <mat-form-field><input matInput [(ngModel)] = "nomDevoir" name="nom"
         placeholder="Nom du devoir" required></mat-form-field>
     <mat-form-field appearance="fill">

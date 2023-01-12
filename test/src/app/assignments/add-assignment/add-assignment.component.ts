@@ -21,6 +21,7 @@ export class AddAssignmentComponent implements OnInit {
 
   onSubmit() {
     const newAssignment = new Assignment();
+    newAssignment.id = Math.round(Math.random() * 100000);
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
@@ -28,11 +29,11 @@ export class AddAssignmentComponent implements OnInit {
     //this.assignments.push(newAssignment);
     //this.nouvelAssignment.emit(newAssignment);
     this.assignmentsService.addAssignment(newAssignment)
-      .subscribe(message => {
-        console.log(message);
+      .subscribe(reponse => {
+        console.log(reponse.message);
+        this.router.navigate(['/home']);
       });
 
-    this.router.navigate(['/home']);
   };
 }
 

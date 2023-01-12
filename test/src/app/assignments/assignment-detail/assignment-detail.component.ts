@@ -14,13 +14,16 @@ export class AssignmentDetailComponent implements OnInit {
 
   onAssignmentRendu() {
     this.assignmentTransmis.rendu = true;
-    this.assignmentsService.updateAssignment(this.assignmentTransmis).subscribe(message => console.log(message));
-    this.router.navigate(["/home"]);
+    this.assignmentsService.updateAssignment(this.assignmentTransmis).subscribe(reponse => {
+      console.log(reponse.message);
+      this.router.navigate(["/home"]); });
   }
 
   onDelete(){
-    this.assignmentsService.deleteAssignment(this.assignmentTransmis).subscribe(message => console.log(message));
-    this.router.navigate(["/home"]);
+    this.assignmentsService.deleteAssignment(this.assignmentTransmis).subscribe(reponse => {
+      console.log(reponse.message);
+      this.router.navigate(["/home"]); });
+    
   }
 
   onSubmit() {

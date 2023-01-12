@@ -6,6 +6,15 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   loggedIn = false;
+  user:any = {
+    username: "",
+    password: ""
+  };
+
+  users = {
+    "admin": "admin",
+    "other": "other"
+  }
 
   logIn() {
     this.loggedIn = true;

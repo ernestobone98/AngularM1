@@ -4,3 +4,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    justify-content: center;
+}

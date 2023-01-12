@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -25,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ModalComponent } from './modal/modal.component';
 
 const routes: Routes = [
   {path: '', component: AssignmentsComponent},
@@ -41,13 +42,15 @@ const routes: Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatInputModule, MatFormFieldModule, FormsModule, MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule, HttpClientModule, RouterModule.forRoot(routes), MatSlideToggleModule
+    MatListModule, MatCardModule, MatCheckboxModule, HttpClientModule, RouterModule.forRoot(routes), MatSlideToggleModule,
+    MatToolbarModule, MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

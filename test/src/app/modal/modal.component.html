@@ -1,0 +1,20 @@
+<!-- Create a popup login html page -->
+<div class="modal">
+    <div>
+        
+        <form class="mform" #formTemplate="ngForm">
+            <button mat-icon-button (click)="hide()" class="closebtn"><mat-icon>close</mat-icon></button>
+            <h1>Login</h1>
+            <mat-form-field>
+                <input matInput placeholder="Utilisateur" [ngModel]="user.username" name="user">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [type]="hide2 ? 'password' : 'text'" placeholder="Mot de passe" [ngModel]="user.password" name="password">
+                <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="getModal(formTemplate)">Connexion</button>
+        </form>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwitchService } from './modal/switch.service';
 import { AuthService } from './shared/auth.service';
 
 @Component({
@@ -8,13 +9,26 @@ import { AuthService } from './shared/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Application de gestion des devoirs à rendre (Assignments)';
+  showModal = false;
+  title = 'Assignments';
+  
 
-  constructor( private authService:AuthService, private router:Router) { }
+  constructor( private authService:AuthService, private router:Router, private sw:SwitchService) { }
+
+  ngOnInit(): void {
+    // hear the event from the service to reveal the modal if necessary
+    this.sw.modal.subscribe((value) => {
+      this.showModal = value;
+    });
+  }
+
+  connected() {
+    return this.authService.loggedIn;
+  }
 
   login() {
     if(!this.authService.loggedIn){
-      this.authService.logIn();
+      this.showModal = true;
     } else {
       this.authService.logOut();
       this.router.navigate(['/home']);
