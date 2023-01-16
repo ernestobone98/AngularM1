@@ -1,20 +1,44 @@
-<!-- <div *ngFor="let assignment of assignments"
-    [ngClass]="{'rendu': assignment.rendu , 'nonRendu' : !assignment.rendu}">
-        {{assignment.nom}} - {{assignment.dateDeRendu}}
-</div> -->
 
-<!-- <div *ngFor="let assignment of assignments">
-    <p appRendu *ngIf="assignment.rendu; else nonsoumis">
-        {{assignment.nom}} - {{assignment.dateDeRendu}}
-    </p>
-    <ng-template #nonsoumis>
-        <p appNonRendu>
-            Pas rendu : {{assignment.nom}} - {{assignment.dateDeRendu}}
-        </p>
-    </ng-template>
-</div> -->
-<!-- <main class="container" *ngIf="!formVisible">   plus besoin --> 
-<main class="container">
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+        
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.nom}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="dateDeRendu">
+        <th mat-header-cell *matHeaderCellDef> Date de Rendu </th>
+        <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.dateDeRendu | date}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="rendu">
+        <th mat-header-cell *matHeaderCellDef> Rendu </th>
+        <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.rendu}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page">
+    </mat-paginator>
+
+  </div>
+  
+
+<!-- <main *ngIf="is_filtered; else not_filtered" class="container">
     
     <mat-list *ngFor="let assignment of assignments">
         <nav><a routerLink="/assignment/{{assignment.id}}">
@@ -28,7 +52,30 @@
             </mat-list-item>
         </a></nav>
     </mat-list>
-    <!-- <app-assignment-detail [assignmentTransmis]="assignmentSelectionne" (deleteAssignment)="onDeleteAssignment($event)">
-    </app-assignment-detail> -->
 </main>
-<!-- <app-add-assignment (nouvelAssignment)="onNouvelAssignment($event)" *ngIf="formVisible"></app-add-assignment> -->
+<ng-template #not_filtered>
+    <main *ngIf="is_rendu; else not_rendu" class="container">
+        <mat-list *ngFor="let assignment of assignments">
+            <nav><a routerLink="/assignment/{{assignment.id}}">
+                <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+                <mat-list-item (click)="assignmentClique(assignment)">
+                    <p appRendu *ngIf="assignment.rendu"> Devoir intitulé {{assignment.nom}} a été rendu.</p>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </a></nav>
+        </mat-list>
+    </main>
+    <ng-template #not_rendu>
+        <main class="container">
+            <mat-list *ngFor="let assignment of assignments">
+                <nav><a routerLink="/assignment/{{assignment.id}}">
+                    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+                    <mat-list-item (click)="assignmentClique(assignment)">
+                        <p appNonRendu *ngIf="!assignment.rendu"> Devoir intitulé {{assignment.nom}} n'a pas été rendu.</p>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </a></nav>
+            </mat-list>
+        </main>
+    </ng-template>
+</ng-template> -->

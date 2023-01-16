@@ -3,8 +3,8 @@
         <a routerLink="/home"><img src="../assets/img/logo.png"></a>
         <div class="spacer"></div>
         <a mat-button routerLink="/add"><span>Ajouter</span></a>
-        <a mat-button><span>Rendus</span></a>
-        <a mat-button><span>Non rendus</span></a>
+        <a #ac mat-button (click)="getRendu();"><span>Rendus</span></a>
+        <a #ac mat-button (click)="getNonRendu();"><span>Non rendus</span></a>
         <a mat-raised-button color="accent" (click)="login();"><span *ngIf="!connected(); else loggedOut">Connexion</span></a>
         <ng-template #loggedOut>
             <span>Déconnexion</span>

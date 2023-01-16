@@ -11,6 +11,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -32,7 +34,8 @@ const routes: Routes = [
   {path : 'home', component: AssignmentsComponent},
   {path : 'add', component: AddAssignmentComponent},
   {path : 'assignment/:id', component: AssignmentDetailComponent},
-  {path : 'assignment/:id/edit', component: EditAssignmentComponent, canActivate: [AuthGuard]}
+  {path : 'assignment/:id/edit', component: EditAssignmentComponent, canActivate: [AuthGuard]},
+  {path : 'login', component: ModalComponent}
 ];
 
 @NgModule({
@@ -50,7 +53,7 @@ const routes: Routes = [
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatInputModule, MatFormFieldModule, FormsModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, HttpClientModule, RouterModule.forRoot(routes), MatSlideToggleModule,
-    MatToolbarModule, MatButtonModule
+    MatToolbarModule, MatButtonModule, MatTableModule, MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
