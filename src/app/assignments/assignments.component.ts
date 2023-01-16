@@ -31,12 +31,15 @@ export class AssignmentsComponent implements OnInit {
   ngOnInit(): void {
     if (window.location.href.includes("rendu")) {
       this.getAssignmentsRendu();
+      
     }
     if (window.location.href.includes("nonrendu")) {
       this.getAssignmentsNonRendu();
     }
-    if (window.location.href.includes("home") || window.location.href === ("https://front-end.herokuapp.com")) {
+    if (window.location.href.includes("home") || window.location.href === "https://front-end.herokuapp.com") {
+      console.log("home");
       this.getAssignments();
+      
     }
   }
 
