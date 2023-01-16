@@ -1,8 +1,8 @@
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="assignmentService.dataSource">
         
-      <!-- Position Column -->
+      <!-- id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.id}} </td>
@@ -14,20 +14,20 @@
         <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.nom}} </td>
       </ng-container>
   
-      <!-- Weight Column -->
+      <!-- dateDeRendu Column -->
       <ng-container matColumnDef="dateDeRendu">
         <th mat-header-cell *matHeaderCellDef> Date de Rendu </th>
         <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.dateDeRendu | date}} </td>
       </ng-container>
   
-      <!-- Symbol Column -->
+      <!-- rendu Column -->
       <ng-container matColumnDef="rendu">
         <th mat-header-cell *matHeaderCellDef> Rendu </th>
         <td mat-cell *matCellDef="let element" routerLink="/assignment/{{element.id}}" style="cursor: pointer"> {{element.rendu}} </td>
       </ng-container>
   
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="assignmentService.displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: assignmentService.displayedColumns;"></tr>
     </table>
 
     <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]"
@@ -36,46 +36,3 @@
     </mat-paginator>
 
   </div>
-  
-
-<!-- <main *ngIf="is_filtered; else not_filtered" class="container">
-    
-    <mat-list *ngFor="let assignment of assignments">
-        <nav><a routerLink="/assignment/{{assignment.id}}">
-            <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
-            <mat-list-item (click)="assignmentClique(assignment)">
-                <p appRendu *ngIf="assignment.rendu; else nonsoumis"> Devoir intitulé {{assignment.nom}} a été rendu.</p>
-                <ng-template #nonsoumis>
-                    <p appNonRendu > Devoir intitulé {{assignment.nom}} n'a pas été rendu.</p>
-                </ng-template>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-        </a></nav>
-    </mat-list>
-</main>
-<ng-template #not_filtered>
-    <main *ngIf="is_rendu; else not_rendu" class="container">
-        <mat-list *ngFor="let assignment of assignments">
-            <nav><a routerLink="/assignment/{{assignment.id}}">
-                <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
-                <mat-list-item (click)="assignmentClique(assignment)">
-                    <p appRendu *ngIf="assignment.rendu"> Devoir intitulé {{assignment.nom}} a été rendu.</p>
-                    <mat-divider></mat-divider>
-                </mat-list-item>
-            </a></nav>
-        </mat-list>
-    </main>
-    <ng-template #not_rendu>
-        <main class="container">
-            <mat-list *ngFor="let assignment of assignments">
-                <nav><a routerLink="/assignment/{{assignment.id}}">
-                    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
-                    <mat-list-item (click)="assignmentClique(assignment)">
-                        <p appNonRendu *ngIf="!assignment.rendu"> Devoir intitulé {{assignment.nom}} n'a pas été rendu.</p>
-                        <mat-divider></mat-divider>
-                    </mat-list-item>
-                </a></nav>
-            </mat-list>
-        </main>
-    </ng-template>
-</ng-template> -->

@@ -35,7 +35,9 @@ const routes: Routes = [
   {path : 'add', component: AddAssignmentComponent},
   {path : 'assignment/:id', component: AssignmentDetailComponent},
   {path : 'assignment/:id/edit', component: EditAssignmentComponent, canActivate: [AuthGuard]},
-  {path : 'login', component: ModalComponent}
+  {path : 'login', component: ModalComponent},
+  {path : 'assignments/rendu', component: AssignmentsComponent},
+  {path : 'assignments/nonrendu', component: AssignmentsComponent}
 ];
 
 @NgModule({

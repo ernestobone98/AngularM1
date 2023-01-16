@@ -3,6 +3,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,12 @@ export class AssignmentsService {
 
   assignments: Assignment[]= [];
 
-  // url = "https://assignment-app.herokuapp.com/api/assignments";
-  url =  "http://localhost:8010/api/assignments";
-  //constructor(private loggingService:LoggingService) { }
+  displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
+  dataSource = new MatTableDataSource<Assignment>(this.assignments);
+
+  url = "https://assignment-app.herokuapp.com/api/assignments";
+  // url =  "http://localhost:8010/api/assignments";
+
   constructor (private loggingService:LoggingService, private http:HttpClient) { }
 
   private handleError<T>(operation: any, result?: T) {

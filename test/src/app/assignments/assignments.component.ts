@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -14,47 +14,56 @@ export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les assignments !";
   ajoutActive = false;
   formVisible = false;
-  is_filtered = false;
-  is_rendu = false;
-  assignmentSelectionne: Assignment = new Assignment;
-  assignments: Assignment[] = [];
 
-  displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
-  dataSource = new MatTableDataSource<Assignment>;
+  assignmentSelectionne: Assignment = new Assignment;
+
+  // displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
+  // dataSource = new MatTableDataSource<Assignment>;
   @ViewChild('paginator') paginator: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
-    this.dataSource.paginator = this.paginator;
+    // this.assignmentService.dataSource = new MatTableDataSource<Assignment>(this.assignments);
+    this.assignmentService.dataSource.paginator = this.paginator;
   }
 
-  constructor (private assignmentService: AssignmentsService) { }
+  constructor (public assignmentService: AssignmentsService) { }
 
   ngOnInit(): void {
-    this.getAssignments();
+    if (window.location.href.includes("rendu")) {
+      this.getAssignmentsRendu();
+    }
+    if (window.location.href.includes("nonrendu")) {
+      this.getAssignmentsNonRendu();
+    }
+    if (window.location.href.includes("home") || window.location.href === ("http://localhost:4200/")) {
+      this.getAssignments();
+    }
   }
 
   getAssignments() {
     this.assignmentService.getAssignments().subscribe(assignments => {
-      this.assignments = assignments;
-      this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
-      this.dataSource.paginator = this.paginator;
+      this.assignmentService.assignments = assignments;
+      this.assignmentService.dataSource = new MatTableDataSource<Assignment>(this.assignmentService.assignments);
+      this.assignmentService.dataSource.paginator = this.paginator;
+      console.log("all");
     });
   }
 
   getAssignmentsRendu() {
     this.assignmentService.getAssignmentsRendu().subscribe(assignments => {
-      this.assignments = assignments;
-      this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
-      this.dataSource.paginator = this.paginator;
+      this.assignmentService.assignments = assignments;
+      this.assignmentService.dataSource = new MatTableDataSource<Assignment>(this.assignmentService.assignments);
+      this.assignmentService.dataSource.paginator = this.paginator;
+      console.log("rendu");
     });
   }
 
   getAssignmentsNonRendu() {
     this.assignmentService.getAssignmentsNonRendu().subscribe(assignments => {
-      this.assignments = assignments;
-      this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
-      this.dataSource.paginator = this.paginator;
+      this.assignmentService.assignments = assignments;
+      this.assignmentService.dataSource = new MatTableDataSource<Assignment>(this.assignmentService.assignments);
+      this.assignmentService.dataSource.paginator = this.paginator;
+      console.log("non rendu");
     });
   }
 
@@ -65,7 +74,7 @@ export class AssignmentsComponent implements OnInit {
 
 
   onDeleteAssignment(event:Assignment) {
-    this.assignments = this.assignments.filter(assignment => assignment !== event);
+    this.assignmentService.assignments = this.assignmentService.assignments.filter(assignment => assignment !== event);
   }
 }
 

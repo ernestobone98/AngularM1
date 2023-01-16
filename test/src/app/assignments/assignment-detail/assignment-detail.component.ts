@@ -20,10 +20,15 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onDelete(){
-    this.assignmentsService.deleteAssignment(this.assignmentTransmis).subscribe(reponse => {
-      console.log(reponse.message);
-      this.router.navigate(["/home"]); });
-    
+    // first verify if the user is Admin
+    if(!this.authService.loggedIn){
+      alert("Vous n'êtes pas autorisé à supprimer un devoir");
+      return;
+    } else {
+      this.assignmentsService.deleteAssignment(this.assignmentTransmis).subscribe(reponse => {
+        console.log(reponse.message);
+        this.router.navigate(["/home"]); });
+      }
   }
 
   onSubmit() {
