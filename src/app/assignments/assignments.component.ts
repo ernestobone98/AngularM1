@@ -35,7 +35,7 @@ export class AssignmentsComponent implements OnInit {
     if (window.location.href.includes("nonrendu")) {
       this.getAssignmentsNonRendu();
     }
-    if (window.location.href.includes("home") || window.location.href === ("https://front-end.herokuapp.com/")) {
+    if (window.location.href.includes("home") || window.location.href === ("https://front-end.herokuapp.com")) {
       this.getAssignments();
     }
   }
